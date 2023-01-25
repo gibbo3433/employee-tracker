@@ -1,6 +1,6 @@
 // Loads in the inquirer dependancy
 const inquirer = require('inquirer');
-const {MainQuestions, AddDepartmentQuestions, AddRoleQuestions, AddEmployeeQuestions, UpdateEmployeeRole}
+const {MainQuestions, DepartmentQuestions, RoleQuestions, AddEmployeeQuestions, UpdateEmployeeRole}
 
 const EmployeeDatabse = require('./db/employeedatabase.js');
 
@@ -11,7 +11,7 @@ const db = new EmployeeDatabase({
     database: 'employee_db'
 });
 
-// connects to the employee database
+// connects to the entire database
 db.connect();
 
 const MenuQuestions = () => {
@@ -28,11 +28,11 @@ const MenuQuestions = () => {
                 case 'view_employees':
                     view_employees();
                     break;
-                case 'add_department':
-                    add_department();
+                case 'add_new_department':
+                    add_new_department();
                     break;
-                case 'add_role':
-                    add_role();
+                case 'add_new_role':
+                    add_new_role();
                     break;
                 case 'add_employee':
                     add_employee();
@@ -74,9 +74,10 @@ const view_employees = () => {
     });
 }
 
-const add_department = () => {
+const add_new_department = () => {
+    // Start up inquirer
     inquirer
-        .prompt(AddDepartmentQuestions)
+        .prompt(DepartmentQuestions)
         .then((response) => {
             db.addDepartment(response).then((results) => {
                 console.log(results);
@@ -84,3 +85,12 @@ const add_department = () => {
             });
         })
 }
+
+const add_new_role = () => {
+    // This grabs the departments table and then puts it into results
+    db.getDepartments().then((results) => { 
+
+        const departmentQuestions = RoleQuestions[2];
+        results.forEach
+
+    })}
