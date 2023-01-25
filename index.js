@@ -74,3 +74,13 @@ const view_employees = () => {
     });
 }
 
+const add_department = () => {
+    inquirer
+        .prompt(AddDepartmentQuestions)
+        .then((response) => {
+            db.addDepartment(response).then((results) => {
+                console.log(results);
+                MenuQuestions();                                
+            });
+        })
+}
