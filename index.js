@@ -43,3 +43,34 @@ const MenuQuestions = () => {
             }
         })
 }
+
+const view_departments = () => {
+    // This grabs the departments table and then puts it into results
+    db.getDepartments().then((results) => {
+        // This shows the data in a console logged table in the terminal
+        console.table(results);
+        // Start over the main questions again
+        MenuQuestions();
+    });
+}
+
+const view_roles = () => {
+    // This grabs the roles table and then puts it into results
+    db.getRoles().then((results) => {
+        // This shows the data in a console logged table in the terminal 
+        console.table(results);
+        // Start over the main questions again
+        MenuQuestions();
+    });
+}
+
+const view_employees = () => {
+    // This grabs the employees table and then puts it into results
+    db.getRoles().then((results) => {
+        // This shows the data in a console logged table in the terminal 
+        console.table(results);
+        // Start over the main questions again
+        MenuQuestions();
+    });
+}
+
