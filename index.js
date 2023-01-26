@@ -1,6 +1,6 @@
 // Loads in the inquirer dependancy
 const inquirer = require('inquirer');
-const {MainQuestions, DepartmentQuestions, RoleQuestions, AddEmployeeQuestions, UpdateEmployeeRole}
+const {MainQuestions, DepartmentQuestions, RoleQuestions, EmployeeQuestions, UpdateEmployee}
 
 const EmployeeDatabse = require('./db/employeedatabase.js');
 
@@ -80,7 +80,6 @@ const add_new_department = () => {
         .prompt(DepartmentQuestions)
         .then((response) => {
             db.addDepartment(response).then((results) => {
-                console.log(results);
                 MenuQuestions();                                
             });
         })
@@ -90,7 +89,47 @@ const add_new_role = () => {
     // This grabs the departments table and then puts it into results
     db.getDepartments().then((results) => { 
 
-        const departmentQuestions = RoleQuestions[2];
-        results.forEach
+        // once finding all departments, add them into the array in RoleQuestions question 3
+        const AllDepartments = RoleQuestions[2];
+        // for each department, push them into the choice for the user to chose from when we enter inquirer
+        results.forEach((department) => {
+            AllDepartments.choices.push({
+                value: department.id,
+                name: department.name
+            })
+        })
+    })};
 
-    })}
+    // inquirer
+    //     .prompt(RoleQuestions)
+    //     .then((response) => {
+    //         db.addRole(response).then((results) => {
+    //         }
+    //         )
+    //     }
+    //     )
+
+
+    const add_employee = () => {
+        // This grabs the departments table and then puts it into results
+        db.getDepartments().then((results) => { 
+    
+            // once finding all departments, add them into the array in RoleQuestions question 3
+            const AllDepartments = RoleQuestions[2];
+            // for each department, push them into the chosice for the user to chose from when we enter inquirer
+            results.forEach((department) => {
+                AllDepartments.choices.push({
+                    value: department.id,
+                    name: department.name
+                })
+            })
+        })};
+    
+        // inquirer
+        //     .prompt(RoleQuestions)
+        //     .then((response) => {
+        //         db.addRole(response).then((results) => {
+        //         }
+        //         )
+        //     }
+        //     )
