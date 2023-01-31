@@ -66,7 +66,7 @@ const MainQuestions = [
     },
   ];
 
-  const UpdateEmployee = [
+  const UpdatedEmployeeQuestions = [
     {
       type: 'list',
       name: 'employee_id',
@@ -86,5 +86,5 @@ const MainQuestions = [
     DepartmentQuestions,
     RoleQuestions,
     EmployeeQuestions,
-    UpdateEmployee,
+    UpdatedEmployeeQuestions,
   };

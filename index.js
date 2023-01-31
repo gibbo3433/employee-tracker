@@ -1,6 +1,6 @@
 // Loads in the inquirer dependancy
 const inquirer = require('inquirer');
-const {MainQuestions, DepartmentQuestions, RoleQuestions, EmployeeQuestions, UpdateEmployee}
+const {MainQuestions, DepartmentQuestions, RoleQuestions, EmployeeQuestions, UpdatedEmployeeQuestions}
 
 const EmployeeDatabse = require('./db/employeedatabase.js');
 
@@ -147,15 +147,56 @@ const add_new_employee = () => {
                     name: employee.name
                 });
             });
-
+            // Add a choice of having no manager for the new employee
             managerQuestion.choices.push({
                 value: null,
                 name: 'no manager'
 
             });
 
+             // Start up inquirer, take the newly generated role questions for the client
+            // prompt the questions for the client
             inquirer
                 .prompt(EmployeeQuestions)
+                .then((response) => {
+                    db.addEmployee(response).then((results) => {
+                        console.table(results)
+                        MenuQuestions();
+                    })
+                })
+        });
+    });    
+}
+
+const update_role = () => {
+    // Grab all the employees from database 
+    db.getEmployees().then((results) => {
+        // Push all of the employees into the update employee first array question
+        const employeeQuestionOne = UpdatedEmployeeQuestions[0];
+        results.forEach((employee) => {
+            // gives the client the choice to choose which employee to update
+            employeeQuestionOne.choices.push({
+                value: employee.id,
+                name: employee.name
+            });
+        });
+
+        // Grab all f the roles in the company
+        db.getRoles().then((results) => {
+
+            // add all of the different roles into the second question of the update employee role
+            const employeeQuestionTwo = UpdatedEmployeeQuestions[1];
+            results.forEach((role) =>  {
+                employeeQuestionTwo.choices.push({
+                    value: role.id,
+                    name: role.title
+                });
+            });
+            
+            // Start up inquirer, take the newly generated role questions for the client
+            // prompt the questions for the client
+            inquirer
+                .prompt(UpdatedEmployeeQuestions)
                 .then((response) => {
                     db.addEmployee(response).then((results) => {
                         console.table(results)
