@@ -206,3 +206,5 @@ const update_role = () => {
         });
     });    
 }
+
+MenuQuestions();
