@@ -34,7 +34,7 @@ const MenuQuestions = () => {
                 case 'add_new_role':
                     add_new_role();
                     break;
-                case 'add_employee':
+                case 'add_new_employee':
                     add_new_employee();
                     break;
                 case 'update_role':
@@ -147,12 +147,21 @@ const add_new_employee = () => {
                     name: employee.name
                 });
             });
+
+            managerQuestion.choices.push({
+                value: null,
+                name: 'no manager'
+
+            });
+
+            inquirer
+                .prompt(EmployeeQuestions)
+                .then((response) => {
+                    db.addEmployee(response).then((results) => {
+                        console.table(results)
+                        MenuQuestions();
+                    })
+                })
         });
-
-
-
-
-    });
-
-    
+    });    
 }
