@@ -21,7 +21,7 @@ class EmployeeDatabase extends Database {
         });
     }
 
-     // This will grab all of the departments in the db
+     // This will grab all of the roles in the db
      getRoles() {
 
         return new Promise((resolve, reject) => {
@@ -37,7 +37,7 @@ class EmployeeDatabase extends Database {
         });
     }
 
-     // This will grab all of the departments in the db
+     // This will grab all of the employees in the db
      getEmployees() {
 
         return new Promise((resolve, reject) => {
@@ -66,7 +66,7 @@ class EmployeeDatabase extends Database {
         });
     }
 
-     // This will grab all of the departments in the db
+     // This will add a new department into the db
      addDepartment(newDepartment) {
 
         return new Promise((resolve, reject) => {
@@ -84,18 +84,18 @@ class EmployeeDatabase extends Database {
         });
     }
 
-     // This will grab all of the departments in the db
-     addRole() {
+     // This will add a new role into the db
+     addRole(newRole) {
 
         return new Promise((resolve, reject) => {
             // This is a db.query methid which we putting into a promise, which will give us an error or results object
-            this.db.query('', (err, results) => {
+            this.db.query('INSERT INTO role SET ?', { title: newRole.title, salary: newRole.salary, department_id: newRole.department_id, }, (err,) => {
                 if (err) { 
                     // Any errors will will reject the promise
                     reject(err);
                 }
                 // If succesful, we will resolve the promise
-                resolve(results);
+                resolve(` You have have added a new role called ${newRole.title} into the database `);
             });
         });
     }
