@@ -25,12 +25,12 @@ const MainQuestions = [
   const RoleQuestions = [
     {
       type: 'input',
-      name: 'role_title',
+      name: 'role.title',
       message: 'What is the name of the new role?',
     },
     {
       type: 'input',
-      name: 'role_salary',
+      name: 'role.salary',
       message: 'What is the salary of the new role?',
     },
     {
