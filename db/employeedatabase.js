@@ -67,17 +67,19 @@ class EmployeeDatabase extends Database {
     }
 
      // This will grab all of the departments in the db
-     addDepartment() {
+     addDepartment(newDepartment) {
 
         return new Promise((resolve, reject) => {
             // This is a db.query methid which we putting into a promise, which will give us an error or results object
-            this.db.query('', (err, results) => {
+            // Here we are adding a new department by SET and then telling the name of the department into the {} area
+            this.db.query('INSERT INTO department SET ?', { name: newDepartment.department_name }, (err) => {
                 if (err) { 
                     // Any errors will will reject the promise
                     reject(err);
                 }
                 // If succesful, we will resolve the promise
-                resolve(results);
+                // We can also use a template literal to see the new department name added
+                resolve(` You have have added ${newDepartment.department_name} into the database `);
             });
         });
     }
