@@ -120,6 +120,7 @@ const add_new_role = () => {
 
 
 const add_new_employee = () => {
+    console.log('HELLO')
     // This grabs the roles table and then puts it into results for us to add into the array
     db.getRoles().then((results) => { 
 
@@ -144,7 +145,7 @@ const add_new_employee = () => {
                 // gives the client the choice to give the new employee a manager from the list of current employees
                 managerQuestion.choices.push({
                     value: employee.id,
-                    name: employee.name
+                    name: employee.first_name + ' ' + employee.last_name
                 });
             });
             // Add a choice of having no manager for the new employee
@@ -198,7 +199,7 @@ const update_role = () => {
             inquirer
                 .prompt(UpdatedEmployeeQuestions)
                 .then((response) => {
-                    db.addEmployee(response).then((results) => {
+                    db.updateEmployee(response).then((results) => {
                         console.table(results)
                         MenuQuestions();
                     })

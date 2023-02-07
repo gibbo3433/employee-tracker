@@ -89,41 +89,53 @@ class EmployeeDatabase extends Database {
 
         return new Promise((resolve, reject) => {
             // This is a db.query methid which we putting into a promise, which will give us an error or results object
+            console.log(newRole)
             this.db.query('INSERT INTO role SET ?', { title: newRole.title, salary: newRole.salary, department_id: newRole.department_id, }, (err,) => {
                 if (err) { 
                     // Any errors will will reject the promise
                     reject(err);
                 }
                 // If succesful, we will resolve the promise
+                // We can also use a template literal to see the new role added
                 resolve(` You have have added a new role called ${newRole.title} into the database `);
             });
         });
     }
 
-     // This will grab all of the departments in the db
-     addEmployee() {
+     // This will add a new employee into the database
+     addEmployee(newEmployee) {
 
         return new Promise((resolve, reject) => {
             // This is a db.query methid which we putting into a promise, which will give us an error or results object
-            this.db.query('', (err, results) => {
+            console.log(newEmployee)
+            this.db.query('INSERT INTO employee SET ?', {first_name: newEmployee.first_name, last_name: newEmployee.last_name, role_id: newEmployee.role_id, manager_id: newEmployee.manager_id}, (err,) => {
                 if (err) { 
                     // Any errors will will reject the promise
                     reject(err);
                 }
                 // If succesful, we will resolve the promise
-                resolve(results);
+                // We can also use a template literal to see the new employee added
+                resolve(` You have have added a new employee called ${newEmployee.first_name} ${' '} ${newEmployee.last_name} into the database `);
             });
         });
     }
 
+     // This will update an exsisting emplpyee
+     updateEmployee(updateEmployee) {
 
-
-
-
-
-
-
-
+        return new Promise((resolve, reject) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
+            this.db.query('UPDATE employee SET role_id=? WHERE id=?', [updateEmployee.employee_id, updateEmployee.role_id], (err,) => {
+                if (err) { 
+                    // Any errors will will reject the promise
+                    reject(err);
+                }
+                // If succesful, we will resolve the promise
+                // We can also use a template literal to see the updated employee
+                resolve(` You have have edited an employee role to ${updateEmployee.role_id} into the database `);
+            });
+        });
+    }
 
 }
 

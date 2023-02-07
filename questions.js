@@ -9,7 +9,7 @@ const MainQuestions = [
       'view_employees', 
       'add_new_department', 
       'add_new_role', 
-      'add_employee', 
+      'add_new_employee', 
       'update_role',]
     },
   ];
@@ -25,12 +25,12 @@ const MainQuestions = [
   const RoleQuestions = [
     {
       type: 'input',
-      name: 'role.title',
+      name: 'title',
       message: 'What is the name of the new role?',
     },
     {
       type: 'input',
-      name: 'role.salary',
+      name: 'salary',
       message: 'What is the salary of the new role?',
     },
     {
