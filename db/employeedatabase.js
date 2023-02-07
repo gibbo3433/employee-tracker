@@ -5,78 +5,114 @@ class EmployeeDatabase extends Database {
         super(info);
     } 
 
+    // This will grab all of the departments in the db
     getDepartments() {
 
         return new Promise((resolve, reject) => {
-            this.db.query('', (err, results) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
+            this.db.query('SELECT * FROM department', (err, results) => {
                 if (err) { 
+                    // Any errors will will reject the promise
                     reject(err);
                 }
-                resolve(resolve);
+                // If succesful, we will resolve the promise
+                resolve(results);
             });
         });
     }
 
-    getRoles() {
+     // This will grab all of the departments in the db
+     getRoles() {
 
         return new Promise((resolve, reject) => {
-            this.db.query('', (err, results) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
+            this.db.query('SELECT role.id, role.title, role.salary, department.name as department_name FROM role INNER JOIN department ON role.department_id = department.id ', (err, results) => {
                 if (err) { 
+                    // Any errors will will reject the promise
                     reject(err);
                 }
-                resolve(resolve);
+                // If succesful, we will resolve the promise
+                resolve(results);
             });
         });
     }
 
-    getEmployees() {
+     // This will grab all of the departments in the db
+     getEmployees() {
 
         return new Promise((resolve, reject) => {
-            this.db.query('', (err, results) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
+            this.db.query(
+                `SELECT 
+            employee.id, 
+            employee.first_name, 
+            employee.last_name, 
+            role.title, 
+            role.salary, 
+            department.name,
+            IF (CONCAT(manager.first_name, ' ', manager.last_name) IS NULL, '', CONCAT(manager.first_name, ' ', manager.last_name)) as manager
+             
+            FROM employee
+            INNER JOIN role ON employee.role_id = role.id
+            INNER JOIN department ON role.department_id = department.id
+            LEFT JOIN employee as manager ON employee.manager_id = manager.id`,(err, results) => {
                 if (err) { 
+                    // Any errors will will reject the promise
                     reject(err);
                 }
-                resolve(resolve);
+                // If succesful, we will resolve the promise
+                resolve(results);
             });
         });
     }
 
-    addDepartment() {
+     // This will grab all of the departments in the db
+     addDepartment() {
 
         return new Promise((resolve, reject) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
             this.db.query('', (err, results) => {
                 if (err) { 
+                    // Any errors will will reject the promise
                     reject(err);
                 }
-                resolve(resolve);
+                // If succesful, we will resolve the promise
+                resolve(results);
             });
         });
     }
 
-    addRole() {
+     // This will grab all of the departments in the db
+     addRole() {
 
         return new Promise((resolve, reject) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
             this.db.query('', (err, results) => {
                 if (err) { 
+                    // Any errors will will reject the promise
                     reject(err);
                 }
-                resolve(resolve);
+                // If succesful, we will resolve the promise
+                resolve(results);
             });
         });
     }
 
-    addEmployee() {
+     // This will grab all of the departments in the db
+     addEmployee() {
 
         return new Promise((resolve, reject) => {
+            // This is a db.query methid which we putting into a promise, which will give us an error or results object
             this.db.query('', (err, results) => {
                 if (err) { 
+                    // Any errors will will reject the promise
                     reject(err);
                 }
-                resolve(resolve);
+                // If succesful, we will resolve the promise
+                resolve(results);
             });
         });
     }
-
 
 
 
