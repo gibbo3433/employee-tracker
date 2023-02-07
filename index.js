@@ -1,8 +1,8 @@
 // Loads in the inquirer dependancy
 const inquirer = require('inquirer');
-const {MainQuestions, DepartmentQuestions, RoleQuestions, EmployeeQuestions, UpdatedEmployeeQuestions}
+const {MainQuestions, DepartmentQuestions, RoleQuestions, EmployeeQuestions, UpdatedEmployeeQuestions} = require("./questions");
 
-const EmployeeDatabse = require('./db/employeedatabase.js');
+const EmployeeDatabase = require('./db/employeedatabase.js');
 
 const db = new EmployeeDatabase({
     host: 'localhost',
@@ -66,7 +66,7 @@ const view_roles = () => {
 
 const view_employees = () => {
     // This grabs the employees table and then puts it into results
-    db.getRoles().then((results) => {
+    db.getEmployees().then((results) => {
         // This shows the data in a console logged table in the terminal 
         console.table(results);
         // Start over the main questions again
