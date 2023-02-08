@@ -132,7 +132,7 @@ class EmployeeDatabase extends Database {
                 }
                 // If succesful, we will resolve the promise
                 // We can also use a template literal to see the updated employee
-                resolve(` You have have edited ${updateEmployee.first_name} to ${updateEmployee.employee_id} into the database `);
+                resolve(` You have have edited employee ${updateEmployee.role_id} to role ${updateEmployee.employee_id} into the database `);
             });
         });
     }
