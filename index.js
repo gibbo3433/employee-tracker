@@ -120,7 +120,6 @@ const add_new_role = () => {
 
 
 const add_new_employee = () => {
-    console.log('HELLO')
     // This grabs the roles table and then puts it into results for us to add into the array
     db.getRoles().then((results) => { 
 
@@ -178,7 +177,7 @@ const update_role = () => {
             // gives the client the choice to choose which employee to update
             employeeQuestionOne.choices.push({
                 value: employee.id,
-                name: employee.name
+                name: employee.first_name + ' ' + employee.last_name
             });
         });
 

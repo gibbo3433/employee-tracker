@@ -120,23 +120,25 @@ class EmployeeDatabase extends Database {
         });
     }
 
-     // This will update an exsisting emplpyee
+     // This will update an existing emplpyee
      updateEmployee(updateEmployee) {
 
         return new Promise((resolve, reject) => {
             // This is a db.query methid which we putting into a promise, which will give us an error or results object
-            this.db.query('UPDATE employee SET role_id=? WHERE id=?', [updateEmployee.employee_id, updateEmployee.role_id], (err,) => {
+            this.db.query('UPDATE employee SET role_id=? WHERE id=?', [updateEmployee.role_id, updateEmployee.employee_id], (err,results) => {
                 if (err) { 
                     // Any errors will will reject the promise
                     reject(err);
                 }
                 // If succesful, we will resolve the promise
                 // We can also use a template literal to see the updated employee
-                resolve(` You have have edited an employee role to ${updateEmployee.role_id} into the database `);
+                resolve(` You have have edited ${updateEmployee.first_name} to ${updateEmployee.employee_id} into the database `);
             });
         });
     }
 
 }
+
+
 
 module.exports = EmployeeDatabase
